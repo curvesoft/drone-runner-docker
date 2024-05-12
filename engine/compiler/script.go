@@ -36,7 +36,7 @@ func setupScriptWindows(src *resource.Step, dst *engine.Step) {
 // helper function configures the pipeline script for the
 // linux operating system.
 func setupScriptPosix(src *resource.Step, dst *engine.Step) {
-	dst.Entrypoint = []string{"/bin/sh", "-c"}
-	dst.Command = []string{`echo "$DRONE_SCRIPT" | /bin/sh`}
+	dst.Entrypoint = []string{"/bin/bash", "-ic"}
+	dst.Command = []string{`echo "$DRONE_SCRIPT" | /bin/bash`}
 	dst.Envs["DRONE_SCRIPT"] = shell.Script(src.Commands)
 }
